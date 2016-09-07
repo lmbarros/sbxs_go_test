@@ -84,3 +84,47 @@ func TestEqual(t *testing.T) {
 		t.Error("equalImpl should have returned false")
 	}
 }
+
+// Tests if equal things are recognized as equal.
+func TestClose64(t *testing.T) {
+	if !Close64(t, 0.001, 0.001001, 0.001) {
+		t.Error("Close64 should have returned true")
+	}
+
+	if !Close64(t, 0.001001, 0.001, 0.001) {
+		t.Error("Close64 should have returned true")
+	}
+
+	if close64Impl(0.001, 0.001001, 0.0001) {
+		t.Error("close64Impl should have returned false")
+	}
+
+	if close64Impl(0.001001, 0.001, 0.0001) {
+		t.Error("close64Impl should have returned false")
+	}
+
+	if !Close64(t, 10.0e4, 10.01e4, 0.001) {
+		t.Error("Close64 should have returned true")
+	}
+
+	if !Close64(t, 10.01e4, 10.0e4, 0.001) {
+		t.Error("Close64 should have returned true")
+	}
+
+	if close64Impl(10.0e4, 10.01e4, 0.0001) {
+		t.Error("close64Impl should have returned false")
+	}
+
+	if close64Impl(10.01e4, 10.0e4, 0.0001) {
+		t.Error("close64Impl should have returned false")
+	}
+
+	// In the following case, I should probably implement and use assert.Small64
+	if !Close64(t, 0.0, 0.0, 1e-10) {
+		t.Error("Close64 should have returned true")
+	}
+
+	if !Close64(t, 0.2, 0.2, 1e-10) {
+		t.Error("Close64 should have returned true")
+	}
+}

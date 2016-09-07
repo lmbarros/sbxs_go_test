@@ -1,6 +1,7 @@
 package assert
 
 import (
+	"math"
 	"path/filepath"
 	"reflect"
 	"runtime"
@@ -27,6 +28,22 @@ func Equal(t *testing.T, a, b interface{}) bool {
 
 func equalImpl(a, b interface{}) bool {
 	return reflect.DeepEqual(a, b)
+}
+
+// Close64 asserts that two given float64 values, a and b, are close to each
+// other within a tolerance of e.
+//
+// This implements the same "very close with tolerance e" algorithm used by
+// Boost Test (http://www.boost.org/doc/libs/1_56_0/libs/test/doc/html/utf/testing-tools/floating_point_comparison.html),
+// which works nicely with both very large and very small numbers.
+func Close64(t *testing.T, a, b, e float64) bool {
+	return True(t, close64Impl(a, b, e),
+		"These values were supposed to be close:\n%v\n%v", a, b)
+}
+
+func close64Impl(a, b, e float64) bool {
+	d := math.Abs(a - b)
+	return d == 0 || (d/math.Abs(a) <= e && d/math.Abs(b) <= e)
 }
 
 // errorInfo returns a string with some useful information about the error.
