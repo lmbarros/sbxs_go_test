@@ -1,6 +1,6 @@
-# sbxs_go_test
+# StackedBoxes' Test Library in Go
 
-[![GoDoc](https://godoc.org/github.com/lmbarros/sbxs_go_test/test?status.svg)](https://godoc.org/github.com/lmbarros/sbxs_go_test/test) [![Go Report Card](https://goreportcard.com/badge/github.com/lmbarros/sbxs_go_test)](https://goreportcard.com/report/github.com/lmbarros/sbxs_go_test) ![License](https://img.shields.io/github/license/lmbarros/sbxs_go_test.svg)
+[![GoDoc](https://godoc.org/github.com/lmbarros/sbxs_go_test?status.svg)](https://godoc.org/github.com/lmbarros/sbxs_go_test) [![Go Report Card](https://goreportcard.com/badge/github.com/lmbarros/sbxs_go_test)](https://goreportcard.com/report/github.com/lmbarros/sbxs_go_test) ![License](https://img.shields.io/github/license/lmbarros/sbxs_go_test.svg)
 
 Testing utilities in Go.
 
